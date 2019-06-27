@@ -9,12 +9,15 @@ class NegociacaoController {
     }
 
     adiciona(event){
-        event.preventDefault()       
-
-        let data = new Date(this._inputData.value.split("-").map((elemento, indice) => elemento - indice % 2))
-        console.log(data)        
-
+        event.preventDefault()        
+        //x = new DateHelper() daria erro, pq os metodos da classe sao estaticos, nao precisa instanciar
+        
+        let data = DateHelper.textoParaData(this._inputData.value)
+        console.log(data)    
+                
         let negociacao = new Negociacao(data, this._inputQuantidade.value, this._inputValor.value)
         console.log(negociacao)        
+
+        DateHelper.dataParaTexto(negociacao.data)
     }
 }
